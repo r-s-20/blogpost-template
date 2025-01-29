@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="stylesheet" href="./styles.css" />
+    <!-- <script  defer src="./posts.js"></script> -->
+    <script defer type="module" src="./script.js"></script>
+    <title>Post my Stories</title>
+  </head>
+  <body>
+    <header id="index-header" w3-include-html="./shared/header.html"></header>
+    <main>
+      <div class="content-container">
+        <h1 id="postTitle">Hallo Content</h1>
+        <hr />
+        <div id="postContent">text will be rendered here.</div>
+      </div>
+
+      <div class="arrow-container">
+        <button disabled id="previousPost" name="vorheriger Beitrag" title="vorheriger Beitrag" class="previous">< Vorheriger Beitrag</button>
+        <button id="nextPost" name="nächster Beitrag" title="nächster Beitrag" class="next">Nächster Beitrag ></button>
+      </div>
+    </main>
+    <footer id="index-header" w3-include-html="./shared/footer.html"></footer>
+  </body>
+</html>
