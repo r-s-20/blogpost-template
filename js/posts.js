@@ -1,11 +1,13 @@
 export let posts = [
   {
-    "title": "Hallo Welt",
-    "content": "<p>Absatz 1</> <p>Absatz2</p>",
-  },
-  {
-    "title": "Hallo Content",
-    "content": `<p>
+    "chapters": [
+      {
+        "title": "Hallo Welt",
+        "content": "<p>Absatz 1</> <p>Absatz2</p>",
+      },
+      {
+        "title": "Hallo Content",
+        "content": `<p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi, beatae, labore soluta ullam numquam
           molestiae nisi reprehenderit officia, provident architecto totam natus? Unde quo aliquid fuga mollitia sunt.
           Ratione, in. Aspernatur quibusdam blanditiis iste nam deleniti dolor, provident dolorum ipsa eum! Assumenda
@@ -28,5 +30,10 @@ export let posts = [
           adipisicing elit. Hic accusantium aut optio enim impedit, iure iste sed blanditiis voluptatem natus doloremque
           quam atque explicabo autem reiciendis pariatur minus perferendis placeat.
         </p>`,
+      },
+    ],
+  },
+  {
+    "worldbuilding": "",
   },
 ];

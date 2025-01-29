@@ -1,6 +1,23 @@
 <nav>
-    <a href="./index.html">Start</a>
-    <a href="">Alle Beiträge</a>
-    <a href="./posts/index.html">Stories</a>
+  <a href="./index.html">Start</a>
+  <a href="./stories.html">Stories</a>
+  <a href="./worldbuilding.html">Weltenbau</a>
 </nav>
-<button popovertarget="colorsDialog" name="colorSettings" title="Farben anpassen"></button>
+<button popovertarget="colorsDialog" name="colorSettings" title="Farben anpassen" class="color-btn"></button>
+<div id="colorsDialog" popover>
+  <div class="color-settings">
+    <div>
+      <label for="sliderBase">Hintergrundfarbe</label>
+      <input type="range" value="200" step="1.0" name="" min="0" max="360" id="sliderBase" />
+    </div>
+    <script>
+        console.log("hallo welt");
+      </script>
+    <div>
+      <label for="sliderHighlight">Highlightfarbe</label>
+      <input type="range" value="190" step="1.0" name="" min="0" max="360" id="sliderHighlight" />
+    </div>
+    <button popovertarget="colorsDialog" popovertargetaction="hide">Schließen</button>
+  </div>
+</div>
+
