@@ -6,6 +6,7 @@ window.addEventListener(
   () => {
     init();
     restoreColors();
+    checkCookie();
   },
   false
 );
@@ -55,3 +56,14 @@ function restoreColors() {
   }
 }
 
+function confirmCookie() {
+  document.getElementById("cookiesInfo").close();
+  sessionStorage.setItem("confirmedCookie", true);
+}
+
+function checkCookie() {
+  if (sessionStorage.getItem("confirmedCookie")) {
+    console.log("remove open");
+    document.getElementById('cookiesInfo').removeAttribute('open');
+  }
+}

@@ -87,6 +87,16 @@ footer {
   color: var(--highlight-color);
 }
 
+dialog {
+  position: absolute;
+  bottom: 10%;
+  max-width: 500px;
+  text-align: center;
+  ul {
+    text-align: left;
+  }
+}
+
 .colors-dialog {
   /* position: absolute;
   top: 30%; */
