@@ -1,87 +1,34 @@
-import { posts } from "../js/posts.js";
-let currentPost = 0;
+// import { posts } from "./posts.js";
+// import {script} from "../script.js";
 
 window.addEventListener(
   "DOMContentLoaded",
   () => {
-    loadPost(currentPost);
+    loadTitles();
   },
   false
 );
 
-function loadPost(i) {
-  let title = document.getElementById("postTitle");
+function loadTitles() {
   let content = document.getElementById("postContent");
-  console.log(title, content);
-  if (posts[0].chapters[i]) {
-    title.innerHTML = posts[0].chapters[i].title;
-    content.innerHTML = posts[0].chapters[i].content;
-  }
-  adjustButtonStatus();
+  content.innerHTML = "";
+  posts[0].chapters.forEach((chapter, index) => {
+    content.innerHTML += `
+        <a href="./storyPost.html" onclick="loadStoryPost(${index})" id="storyLink${index}">${chapter.title}</a>
+        `;
+
+    // console.log("adding event listener for", index);
+    // document.getElementById(`storyLink${index}`).addEventListener("click", () => {
+    //   console.log("Clicked post", index);
+    //   loadStoryPost(index);
+    // });
+  });
 }
 
-document.getElementById("nextPost").addEventListener("click", () => {
-  showNextPost();
-});
-
-document.getElementById("previousPost").addEventListener("click", () => {
-  showPreviousPost();
-});
-
-function showNextPost() {
-  currentPost = currentPost < posts[0].chapters.length - 1 ? (currentPost += 1) : 0;
-  loadPost(currentPost);
-  adjustButtonStatus();
+function loadStoryPost(i) {
+  setPostIndex(i);
 }
 
-function showPreviousPost() {
-  currentPost = currentPost >= 1 ? (currentPost = 0) : (currentPost = posts[0].chapters.length - 1);
-  loadPost(currentPost);
-  adjustButtonStatus();
+function setPostIndex(i) {
+  sessionStorage.setItem("currentPost", JSON.stringify(i));
 }
-
-function adjustButtonStatus() {
-  let btnNext = document.getElementById("nextPost");
-  let btnPrev = document.getElementById("previousPost");
-
-  if (currentPost == 0) {
-    btnPrev.setAttribute("disabled", "true");
-  } else btnPrev.removeAttribute("disabled");
-
-  if (currentPost == posts[0].chapters.length - 1) {
-    btnNext.setAttribute("disabled", "true");
-  } else btnNext.removeAttribute("disabled");
-}
-
-// document.getElementById("nextPost").addEventListener("click", () => {
-//     showNextPost();
-//   });
-
-//   document.getElementById("previousPost").addEventListener("click", () => {
-//     showPreviousPost();
-//   });
-
-//   function showNextPost() {
-//     currentPost = currentPost < posts.chapters.length - 1 ? (currentPost += 1) : 0;
-//     loadPost(currentPost);
-//     adjustButtonStatus();
-//   }
-
-//   function showPreviousPost() {
-//     currentPost = currentPost >= 1 ? (currentPost = 0) : (currentPost = posts.chapters.length - 1);
-//     loadPost(currentPost);
-//     adjustButtonStatus();
-//   }
-
-//   function adjustButtonStatus() {
-//     let btnNext = document.getElementById("nextPost");
-//     let btnPrev = document.getElementById("previousPost");
-
-//     if (currentPost == 0) {
-//       btnPrev.setAttribute("disabled", "true");
-//     } else btnPrev.removeAttribute("disabled");
-
-//     if (currentPost == posts.chapters.length - 1) {
-//       btnNext.setAttribute("disabled", "true");
-//     } else btnNext.removeAttribute("disabled");
-//   }

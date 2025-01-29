@@ -1,4 +1,4 @@
-export let posts = [
+let posts = [
   {
     "chapters": [
       {

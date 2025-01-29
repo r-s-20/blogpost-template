@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="noindex nofollow">
+    <link rel="stylesheet" href="./styles.css" />
+    <script defer src="./js/posts.js"></script>
+    <script defer type="module" src="./js/storyPost.js"></script>
+    <script defer type="module" src="./script.js"></script>
+    <title>Stories</title>
+  </head>
+  <body>
+    <div id="colorsDialog" popover>
+      <div class="color-settings">
+        <div>
+          <label for="sliderBase">Hintergrundfarbe</label>
+          <input type="range" value="200" step="1.0" name="" min="0" max="360" id="sliderBase" />
+        </div>
+        <div>
+          <label for="sliderHighlight">Highlightfarbe</label>
+          <input type="range" value="190" step="1.0" name="" min="0" max="360" id="sliderHighlight" />
+        </div>
+        <button popovertarget="colorsDialog" popovertargetaction="hide">Schließen</button>
+      </div>
+    </div>
+
+    <header id="index-header" w3-include-html="./shared/header.html"></header>
+    <main>
+      <div class="content-container">
+        <h1 id="postTitle">Hallo Content</h1>
+        <hr />
+        <div id="postContent">text will be rendered here.</div>
+      </div>
+
+      <div class="arrow-container">
+        <button id="previousPost" name="vorheriger Beitrag" title="vorheriger Beitrag" class="previous">
+          <span>< </span><span>Vorheriger Beitrag</span>
+        </button>
+        <button id="nextPost" name="nächster Beitrag" title="nächster Beitrag" class="next">
+          <span>Nächster Beitrag</span> <span> ></span>
+        </button>
+      </div>
+    </main>
+
+    <footer id="index-header" w3-include-html="./shared/footer.html"></footer>
+  </body>
+</html>

@@ -1,4 +1,5 @@
 // import { posts } from "./js/posts.js";
+// import { stories } from "./js/stories.js";
 
 window.addEventListener(
   "DOMContentLoaded",
@@ -40,3 +41,5 @@ function changeBaseColor(color, hue) {
   let r = document.querySelector(":root");
   r.style.setProperty(color, hue);
 }
+
+

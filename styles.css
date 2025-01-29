@@ -217,6 +217,12 @@ button[disabled] {
   }
 }
 
+.post-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .arrow-container {
   margin-top: 1rem;
   display: flex;
