@@ -10,9 +10,24 @@
     <title>Post my Stories</title>
   </head>
   <body>
+    <div id="colorsDialog" popover>
+      <div class="color-settings">
+        <div>
+          <label for="sliderBase">Hintergrundfarbe</label>
+          <input type="range" value="240" step="1.0" name="" min="0" max="360" id="sliderBase" />
+        </div>
+        <div>
+          <label for="sliderHighlight">Highlightfarbe</label>
+          <input type="range" value="250" step="1.0" name="" min="0" max="360" id="sliderHighlight" />
+        </div>
+        <button popovertarget="colorsDialog" popovertargetaction="hide">Schließen</button>
+      </div>
+    </div>
+
     <header id="index-header" w3-include-html="./shared/header.html"></header>
     <main>
       <div class="content-container">
+        
         <h1 id="postTitle">Hallo Content</h1>
         <hr />
         <div id="postContent">text will be rendered here.</div>
@@ -27,6 +42,7 @@
         </button>
       </div>
     </main>
+
     <footer id="index-header" w3-include-html="./shared/footer.html"></footer>
   </body>
 </html>

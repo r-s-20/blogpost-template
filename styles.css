@@ -5,7 +5,7 @@
 :root {
   scroll-behavior: smooth;
   --base-color: 240;
-  --base-color2: 280;
+  --base-color2: 250;
   font-size: 16px;
 }
 
@@ -48,11 +48,23 @@ header {
   padding: 0rem 4rem;
   color: var(--highlight-color);
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   nav {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     gap: 1rem;
+  }
+  button {
+    height: 1.8rem;
+    width: 1rem;
+    border-radius: 50%;
+    background-color: var(--highlight-color);
+    filter: opacity(0.4);
+    &:hover {
+      filter: opacity(0.6);
+    }
   }
 }
 
@@ -73,6 +85,92 @@ footer {
   align-items: center;
   justify-content: center;
   color: var(--highlight-color);
+}
+
+.colors-dialog {
+  /* position: absolute;
+  top: 30%; */
+  width: 50%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 1px 0px 3px 1px rgba(128, 128, 128, 0.1);
+  padding: 3rem;
+  color: var(--font-color);
+}
+
+div[popover] {
+  position: absolute;
+  top: -50%;
+  max-width: 600px;
+  border-radius: 8px;
+  border: none;
+  box-shadow: 1px 0px 3px 1px rgba(128, 128, 128, 0.1);
+  color: var(--font-color);
+}
+
+.color-settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 16px;
+  height: 200px;
+  width: 200px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+
+input[range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  background: var(--background-color);
+  cursor: pointer;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #add8e6;
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -8px; /* Centers thumb on the track */
+  background-color: #808080;
+  border-radius: 0.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: var(--font-color);
+  border-radius: 0.5rem;
+  height: 0.5rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: var(--highlight-color);
+  /* border: 1px solid var(--background-color); */
+  border: none;
+  border-radius: 20%;
+  height: 2rem;
+  width: 1.5rem;
 }
 
 a {

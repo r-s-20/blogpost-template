@@ -39,6 +39,16 @@ function loadPost(i) {
   }
 }
 
+document.getElementById("sliderBase").addEventListener("input", () => {
+  let slider = document.getElementById("sliderBase");
+  changeBaseColor("--base-color", slider.value);
+});
+
+document.getElementById("sliderHighlight").addEventListener("input", () => {
+  let slider = document.getElementById("sliderHighlight");
+  changeBaseColor("--base-color2", slider.value);
+});
+
 document.getElementById("nextPost").addEventListener("click", () => {
   showNextPost();
 });
@@ -63,11 +73,16 @@ function adjustButtonStatus() {
   let btnNext = document.getElementById("nextPost");
   let btnPrev = document.getElementById("previousPost");
 
-  if ((currentPost == 0)) {
+  if (currentPost == 0) {
     btnPrev.setAttribute("disabled", "true");
   } else btnPrev.removeAttribute("disabled");
 
-  if ((currentPost == posts.length - 1)) {
+  if (currentPost == posts.length - 1) {
     btnNext.setAttribute("disabled", "true");
   } else btnNext.removeAttribute("disabled");
+}
+
+function changeBaseColor(color, hue) {
+  let r = document.querySelector(":root");
+  r.style.setProperty(color, hue);
 }
