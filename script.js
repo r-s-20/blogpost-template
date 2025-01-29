@@ -5,6 +5,7 @@ window.addEventListener(
   "DOMContentLoaded",
   () => {
     init();
+    restoreColors();
   },
   false
 );
@@ -40,6 +41,17 @@ async function includeHTML() {
 function changeBaseColor(color, hue) {
   let r = document.querySelector(":root");
   r.style.setProperty(color, hue);
+  sessionStorage.setItem(color, JSON.stringify(hue));
 }
 
+function restoreColors() {
+  let color1 = sessionStorage.getItem("--base-color");
+  let color2 = sessionStorage.getItem("--base-color2");
+  if (color1) {
+    changeBaseColor("--base-color", JSON.parse(color1));
+  }
+  if (color2) {
+    changeBaseColor("--base-color2", JSON.parse(color2));
+  }
+}
 
