@@ -34,19 +34,37 @@ function setPostIndex(i) {
 }
 
 async function createChapters() {
-  let fileName = allStories[0].title;
+  let fileName = allStories[1].title;
   let story;
-  let frStory;
-  console.log(fileName);
+  let chapters = [];
   await fetch(`./stories/${fileName}`)
     .then((res) => res.text())
     .then((text) => {
       story = text;
     })
     .catch((e) => console.error(e));
-  console.log(story);
-  // Regex-Expression to split at h1-lines:
-  // <[\/]?div>|<h1 id="section(-\d?)">|<\/h1></h1>
-  // also working
-  // <h1 id="section(-?)(\d+)?">|<\/h1>
+  let noSpaces = cleanupSpaces(story);
+  chapters = splitText(noSpaces);
+  console.log(chapters);
+}
+
+function cleanupSpaces(story) {
+  let noSpaces = story.replace(/\s+/g, " ");
+  noSpaces = noSpaces
+    .replaceAll(/<(\/)?div>/g, "")
+    .replaceAll(/\s+<p>\s+/g, "<p>")
+    .replaceAll(/\s+<\/p>\s+/g, "</p>");
+  return noSpaces;
+}
+
+function splitText(noSpaces) {
+  let chapters = [];
+  let splitted = noSpaces.split(/<\/?h1>?/);
+  for (let index = 0; index < splitted.length; index++) {
+    const element = splitted[index];
+    if (index % 2 == 0 && index > 0) {
+      chapters.push(element.trim());
+    }
+  }
+  return chapters;
 }
