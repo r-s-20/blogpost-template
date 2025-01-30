@@ -19,10 +19,10 @@ function getCurrentPost() {
 function loadPost(i) {
   let title = document.getElementById("postTitle");
   let content = document.getElementById("postContent");
-  let chapter = posts[0].chapters[i];
-  if (chapter) {
-    title.innerHTML = chapter.title;
-    content.innerHTML = chapter.content;
+  let story = posts[0].stories[i];
+  if (story) {
+    title.innerHTML = story.title;
+    content.innerHTML = story.content;
   }
   adjustButtonStatus();
 }
@@ -36,14 +36,14 @@ document.getElementById("previousPost").addEventListener("click", () => {
 });
 
 function showNextPost() {
-  currentPost = currentPost < posts[0].chapters.length - 1 ? (currentPost += 1) : 0;
+  currentPost = currentPost < posts[0].stories.length - 1 ? (currentPost += 1) : 0;
   loadPost(currentPost);
   sessionStorage.setItem("currentPost", JSON.stringify(currentPost));
   adjustButtonStatus();
 }
 
 function showPreviousPost() {
-  currentPost = currentPost >= 1 ? (currentPost = 0) : (currentPost = posts[0].chapters.length - 1);
+  currentPost = currentPost >= 1 ? (currentPost = 0) : (currentPost = posts[0].stories.length - 1);
   loadPost(currentPost);
   sessionStorage.setItem("currentPost", JSON.stringify(currentPost));
   adjustButtonStatus();
@@ -57,7 +57,8 @@ function adjustButtonStatus() {
     btnPrev.setAttribute("disabled", "true");
   } else btnPrev.removeAttribute("disabled");
 
-  if (currentPost == posts[0].chapters.length - 1) {
+  if (currentPost == posts[0].stories.length - 1) {
     btnNext.setAttribute("disabled", "true");
   } else btnNext.removeAttribute("disabled");
 }
+
