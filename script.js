@@ -63,7 +63,6 @@ function confirmCookie() {
 
 function checkCookie() {
   if (sessionStorage.getItem("confirmedCookie")) {
-    console.log("remove open");
     document.getElementById('cookiesInfo').removeAttribute('open');
   }
 }

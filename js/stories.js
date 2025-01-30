@@ -1,6 +1,3 @@
-// import { posts } from "./posts.js";
-// import {script} from "../script.js";
-
 window.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -16,12 +13,6 @@ function loadTitles() {
     content.innerHTML += `
         <a href="./storyPost.html" onclick="loadStoryPost(${index})" id="storyLink${index}">${chapter.title}</a>
         `;
-
-    // console.log("adding event listener for", index);
-    // document.getElementById(`storyLink${index}`).addEventListener("click", () => {
-    //   console.log("Clicked post", index);
-    //   loadStoryPost(index);
-    // });
   });
 }
 
@@ -45,7 +36,6 @@ async function createChapters() {
     .catch((e) => console.error(e));
   let noSpaces = cleanupSpaces(story);
   chapters = splitText(noSpaces);
-  console.log(chapters);
 }
 
 function cleanupSpaces(story) {
