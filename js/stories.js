@@ -25,17 +25,29 @@ function setPostIndex(i) {
 }
 
 async function createChapters() {
-  let fileName = allStories[1].title;
-  let story;
-  let chapters = [];
-  await fetch(`./stories/${fileName}`)
-    .then((res) => res.text())
-    .then((text) => {
-      story = text;
-    })
-    .catch((e) => console.error(e));
-  let noSpaces = cleanupSpaces(story);
-  chapters = splitText(noSpaces);
+  let stories = [];
+  for (let i = 0; i < allStories.length; i++) {
+    const story = allStories[i];
+    let file = `./stories/${story.title}`;
+    let chapters = [];
+    let text = await getText(file);
+    if (text) {
+      stories.push({ title: story.title, chapters: [] });
+      let noSpaces = cleanupSpaces(text);
+      chapters = splitText(noSpaces);
+      stories[stories.length - 1].chapters.push(chapters);
+    }
+  }
+  console.log(stories);
+}
+
+async function getText(file) {
+  let resp = await fetch(file);
+  if (resp.ok) {
+    return await resp.text();
+  } else {
+    console.error("File not found, please check storyList.js");
+  }
 }
 
 function cleanupSpaces(story) {
