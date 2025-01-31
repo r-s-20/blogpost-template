@@ -1,3 +1,5 @@
+storiesFromHTML();
+
 window.addEventListener(
   "DOMContentLoaded",
   () => {
@@ -24,7 +26,7 @@ function setPostIndex(i) {
   sessionStorage.setItem("currentPost", JSON.stringify(i));
 }
 
-async function createChapters() {
+async function storiesFromHTML() {
   let stories = [];
   for (let i = 0; i < allStories.length; i++) {
     const story = allStories[i];
@@ -32,13 +34,14 @@ async function createChapters() {
     let chapters = [];
     let text = await getText(file);
     if (text) {
-      stories.push({ title: story.title, chapters: [] });
+      let cleanTitle = story.title.replace(".html", "")
+      stories.push({ title: cleanTitle, chapters: [] });
       let noSpaces = cleanupSpaces(text);
-      chapters = splitText(noSpaces);
+      chapters = splitToChapters(noSpaces);
       stories[stories.length - 1].chapters.push(chapters);
     }
   }
-  console.log(stories);
+  console.log("stories is now", stories);
 }
 
 async function getText(file) {
@@ -59,13 +62,22 @@ function cleanupSpaces(story) {
   return noSpaces;
 }
 
-function splitText(noSpaces) {
+/**
+ * Splits html-Text into array of chapters based on h1-tags. 
+ * h1 will be used as title, text after h1 as content.
+ * @param {String} noSpaces 
+ * @returns {[{title: String, content: String}]}
+ */
+function splitToChapters(noSpaces) {
   let chapters = [];
   let splitted = noSpaces.split(/<\/?h1>?/);
   for (let index = 0; index < splitted.length; index++) {
     const element = splitted[index];
-    if (index % 2 == 0 && index > 0) {
-      chapters.push(element.trim());
+    if (index % 2 != 0) {
+      let title = element.trim().replace(/id="section[-]?[\d+]?">/, "");
+      chapters.push({"title": title});
+    } else if (index % 2 == 0 && index > 0) {
+      chapters[chapters.length-1]["content"] = element.trim();
     }
   }
   return chapters;

@@ -1,6 +1,6 @@
 let allStories = [
   {
-    title: "testStoy1.html",
+    title: "test Story1.html",
   },
   {
     title: "testStory2.html",
