@@ -19,10 +19,10 @@ function getCurrentPost() {
 function loadPost(i) {
   let title = document.getElementById("postTitle");
   let content = document.getElementById("postContent");
-  let story = posts[0].stories[i];
-  if (story) {
-    title.innerHTML = story.title;
-    content.innerHTML = story.content;
+  let chapter = posts[0].stories[0].chapters[i];
+  if (chapter) {
+    title.innerHTML = chapter.title;
+    content.innerHTML = chapter.content;
   }
   adjustButtonStatus();
 }
