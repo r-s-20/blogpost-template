@@ -48,6 +48,7 @@ function showNextPost() {
   loadPost(currentStory, currentChapter);
   sessionStorage.setItem("currentChapter", JSON.stringify(currentChapter));
   adjustButtonStatus();
+  window.scrollTo(0,0);
 }
 
 function showPreviousPost() {
@@ -56,6 +57,7 @@ function showPreviousPost() {
   loadPost(currentStory, currentChapter);
   sessionStorage.setItem("currentChapter", JSON.stringify(currentChapter));
   adjustButtonStatus();
+  window.scrollTo(0,0);
 }
 
 function adjustButtonStatus() {
