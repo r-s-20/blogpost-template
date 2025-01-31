@@ -63,26 +63,18 @@ function confirmCookie() {
 
 function checkCookie() {
   if (sessionStorage.getItem("confirmedCookie")) {
-    document.getElementById('cookiesInfo').removeAttribute('open');
+    document.getElementById("cookiesInfo").removeAttribute("open");
   }
 }
 
 async function storiesFromHTML() {
   let stories = [];
+  console.log("old posts", posts[0].stories);
   for (let i = 0; i < allStories.length; i++) {
     const story = allStories[i];
-    let chapters = [];
     let file = `./stories/${story.title}`;
-    let text = await getText(file);
-    if (text) {
-      let cleanTitle = story.title.replace(".html", "");
-      stories.push({ title: cleanTitle, chapters: [] });
-      let noSpaces = cleanupSpaces(text);
-      chapters = splitToChapters(noSpaces);
-      stories[stories.length - 1].chapters.push(chapters);
-    }
+    await processFile(story, stories, file);
   }
-  console.log("old posts", posts[0].stories);
   stories.forEach((story) => {
     posts[0].stories.push(story);
   });
@@ -90,9 +82,27 @@ async function storiesFromHTML() {
 }
 
 /**
+ *
+ * @param {{title:String, content: String}} story
+ * @param {[story]} stories
+ * @param {String} file
+ */
+async function processFile(story, stories, file) {
+  let text = await getText(file);
+  let chapters = [];
+  if (text) {
+    let cleanTitle = story.title.replace(".html", "");
+    stories.push({ title: cleanTitle, chapters: [] });
+    let noSpaces = cleanupSpaces(text);
+    chapters = splitToChapters(noSpaces);
+    stories[stories.length - 1].chapters = chapters;
+  }
+}
+
+/**
  * Fetches content from a filepath and returns it as text
- * @param {String} file 
- * @returns {String} 
+ * @param {String} file
+ * @returns {String}
  */
 async function getText(file) {
   let resp = await fetch(file);

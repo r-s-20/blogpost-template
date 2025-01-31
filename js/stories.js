@@ -7,7 +7,7 @@ window.addEventListener(
 );
 
 async function initStories() {
-  setTimeout(renderTitles, 500)
+  setTimeout(renderTitles, 700);
 }
 
 function renderTitles() {
@@ -18,33 +18,31 @@ function renderTitles() {
 function renderSinglePostTitles() {
   let container = document.getElementById("postTitles");
   container.innerHTML = "";
-  posts[0].stories[0].chapters.forEach((chapter, index) => {
+  posts[0].stories.forEach((story, i) => {
     container.innerHTML += `
-        <a href="./storyPost.html" onclick="loadStoryPost(${index})" id="storyLink${index}">${chapter.title}</a>
+      <h3>${story.title}</h3>
+    `;
+    story.chapters.forEach((chapter, j) => {
+      container.innerHTML += `
+        <a href="./storyPost.html" onclick="loadStoryPost(${i}, ${j})" id="storyLink${i}-${j}">${chapter.title}</a>
         `;
+    });
   });
 }
 
 function renderStoryTitles() {
   console.log("rendering titles");
-  
+
   let container = document.getElementById("storyTitles");
   container.innerHTML = "";
-  console.log(posts[0].stories);
-  posts[0].stories.forEach((story, index) => {
+  posts[0].stories.forEach((story, i) => {
     container.innerHTML += `
-        <!-- <a href="./storyPost.html" onclick="loadStory(${index})" id="storyLink${index}">${story.title}</a> -->
-        <a href="./storyPost.html" id="storyLink${index}">${story.title}</a>
+        <a href="./storyPost.html" onclick="loadStoryPost(${i}, 0)" id="storyLink${i}">${story.title}</a>
         `;
   });
 }
 
-function loadStoryPost(i) {
-  setPostIndex(i);
+function loadStoryPost(i, j) {
+  sessionStorage.setItem("currentStory", JSON.stringify(i));
+  sessionStorage.setItem("currentChapter", JSON.stringify(j));
 }
-
-function setPostIndex(i) {
-  sessionStorage.setItem("currentPost", JSON.stringify(i));
-}
-
-
